@@ -1,0 +1,80 @@
+---
+title: "utah-univ-roi"
+author: "Jeff Olson"
+date: "4/16/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Considering a bachelor’s degree in Utah? Learn its economic value from government sources. 
+
+###### Click a button for the identity of the university.
+```{r, echo = FALSE, cache = TRUE}
+warning = FALSE
+library(leaflet)
+library(tidyr)
+univ_sites <- data.frame(
+        name = c("Utah State University",
+                 "Weber State University",
+                 "University of Utah",
+                 "Utah Valley University",
+                 "Brigham Young University",
+                 "Snow College",
+                 "Southern Utah University",
+                 "Dixie State University"
+        ),
+        lat = c(41.7452675,
+                41.1914258,
+                40.7649408,
+                40.278766,
+                40.2518476,
+                39.3612287,
+                37.6764503,
+                37.1032184
+        ),
+        lng = c(-111.8138713,
+                -111.9465433,
+                -111.8442908,
+                -111.7175626,
+                -111.6515043,
+                -111.5851162,
+                -113.0734888,
+                -113.5674376
+        ),
+        col = c("blue",
+                "purple",
+                "red",
+                "green",
+                "blue",
+                "orange",
+                "red",
+                "red")
+)
+
+univ_sites %>%
+        leaflet() %>%
+        addTiles() %>%
+        addCircleMarkers(lng = univ_sites$lng,
+                         lat = univ_sites$lat,
+                         color = univ_sites$col, 
+                         popup = univ_sites$name
+        )
+
+```
+
+## Here is what you will learn:
+
+--Median debt to the federal government  
+--Median earnings two years after graduation  
+--Economic return (calculated from debt and earnings) 
+
+## 
+
+### Not a complete story, but valuable. 
+### For privacy, the government does not provide information about small programs.
+
+## Try it at 
+
+https://jefferyeolson.shinyapps.io/utah-univ-roi/  
